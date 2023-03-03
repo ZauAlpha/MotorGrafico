@@ -9,37 +9,39 @@ namespace MotorGrafico
     public class Cilinder : Figure
     {
         private List<Triangle> triangles;
-        private float height, raidus;
+        private float height, radius;
         public Cilinder(float height, float radius)
         {
             triangles = new List<Triangle>();
-            int number = 15;
-            float noSeComoLlamarEstaVariable = 360 / number;
+            int number =90;
+            float angle = 360 / number;
+            
             this.height = height;
-            this.raidus = raidus;
+            this.radius = radius;
             float z1 = -height / 2;
             float z2 = height / 2;
-            float a = radius / 5;
+            float x = (float)Math.Cos(toRadians(angle / 2)) * radius;
+            float y = (float)Math.Sin(toRadians(angle / 2)) * radius;
+            
             for (int i = 0; i <= number; i++)
             {
-                
-                // Draw triangles Circle 1
-                Triangle triangle1 = new Triangle(new Point3D(0, 0, z1), new Point3D(radius, -a, z1), new Point3D(radius, a , z1), Color.Green);
-                // Draw triangles Circle 2
-                Triangle triangle2 = new Triangle(new Point3D(radius, 0, z2), new Point3D(radius, -a, z1), new Point3D(radius, a, z1), Color.Green);
+                //Draw circle 1
+                Triangle triangle1 = new Triangle(new Point3D(x, y, z1), new Point3D(x,-y, z1), new Point3D(0, 0 , z1), Color.Yellow);
                 // Draw triangles for the circle1
-                Triangle triangle3 = new Triangle(new Point3D(0, 0, z2), new Point3D(radius, a, z2), new Point3D(radius, -a, z2), Color.Green);
+                Triangle triangle2 = new Triangle(new Point3D(x, 0, z2), new Point3D(x, -y, z1), new Point3D(x, y, z1), Color.Yellow);
+                // Draw Circle 2
+                Triangle triangle3 = new Triangle(new Point3D(0, 0, z2), new Point3D(x, -y, z2), new Point3D(x,y, z2), Color.Yellow);
                 // Draw triangles for the circle2
-                Triangle triangle4 = new Triangle(new Point3D(radius, 0,z1), new Point3D(radius, a, z2), new Point3D(radius, -a, z2), Color.Green);
+                Triangle triangle4 = new Triangle(new Point3D(x, y, z2), new Point3D(x, -y, z2) , new Point3D(x, 0, z1), Color.Yellow);
                 // rotate the triangles for the first cirlce
-                triangle1.rotateZ(noSeComoLlamarEstaVariable * i);
-                triangle2.rotateZ(noSeComoLlamarEstaVariable * i);
+                triangle1.rotateZ(angle * i);
+                triangle2.rotateZ(angle * i);
                 // rotate the triangles for the other cirlce 
-                triangle3.rotateZ((noSeComoLlamarEstaVariable * i) + (noSeComoLlamarEstaVariable / 2));
-                triangle4.rotateZ((noSeComoLlamarEstaVariable * i) + (noSeComoLlamarEstaVariable / 2));
+                triangle3.rotateZ((angle * (i+.5f)) );
+                triangle4.rotateZ((angle * (i+.5f)) );
                 //add it to the scene
                 triangles.Add(triangle1);
-                triangles.Add(triangle2);
+                //triangles.Add(triangle2);
                 triangles.Add(triangle3);
                 triangles.Add(triangle4);
             }

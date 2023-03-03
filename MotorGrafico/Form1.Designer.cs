@@ -34,6 +34,7 @@
             this.ROTATE_X = new System.Windows.Forms.Button();
             this.ROTATE_Y = new System.Windows.Forms.Button();
             this.ROTATE_Z = new System.Windows.Forms.Button();
+            this.ROTATE_ALL = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PICTURE_BOX)).BeginInit();
             this.SuspendLayout();
             // 
@@ -82,15 +83,27 @@
             this.ROTATE_Z.UseVisualStyleBackColor = true;
             this.ROTATE_Z.Click += new System.EventHandler(this.ROTATE_Z_Click);
             // 
+            // ROTATE_ALL
+            // 
+            this.ROTATE_ALL.Location = new System.Drawing.Point(356, 23);
+            this.ROTATE_ALL.Name = "ROTATE_ALL";
+            this.ROTATE_ALL.Size = new System.Drawing.Size(75, 23);
+            this.ROTATE_ALL.TabIndex = 5;
+            this.ROTATE_ALL.Text = "rotate all";
+            this.ROTATE_ALL.UseVisualStyleBackColor = true;
+            this.ROTATE_ALL.Click += new System.EventHandler(this.ROTATE_ALL_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1352, 729);
+            this.Controls.Add(this.ROTATE_ALL);
             this.Controls.Add(this.ROTATE_Z);
             this.Controls.Add(this.ROTATE_Y);
             this.Controls.Add(this.ROTATE_X);
             this.Controls.Add(this.PICTURE_BOX);
+            this.DoubleBuffered = true;
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.PICTURE_BOX)).EndInit();
@@ -105,5 +118,6 @@
         private Button ROTATE_X;
         private Button ROTATE_Y;
         private Button ROTATE_Z;
+        private Button ROTATE_ALL;
     }
 }

@@ -17,7 +17,10 @@ namespace MotorGrafico
         public abstract void rotateZ(float angle);
         public abstract void rotateX(float angle);
         public abstract void rotateY(float angle);
-
+        protected float toRadians(float degrees)
+        {
+            return degrees / 57.295f;
+        }
 
     }
     

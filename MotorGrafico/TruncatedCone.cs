@@ -13,32 +13,34 @@ namespace MotorGrafico
         public TruncatedCone(float height, float minRadius, float majRadius)
         {
             triangles = new List<Triangle>();
-            int number = 15;
-            float noSeComoLlamarEstaVariable = 360 / number;
+            int number = 90;
+            float angle = 360 / number;
             this.height = height;
             this.minRadius = minRadius;
             this.majRadius = majRadius;
             float z1 = -height / 2;
             float z2 = height / 2;
-            float a1 = majRadius / 5;
-            float a2 = minRadius / 5;
+            float x1 = (float)Math.Cos(toRadians(angle / 2)) * minRadius ;
+            float x2 = (float)Math.Cos(toRadians(angle / 2)) * majRadius ;
+            float y1 = (float)Math.Sin(toRadians(angle / 2)) * minRadius ;
+            float y2 = (float)Math.Sin(toRadians(angle / 2)) * majRadius ;
+            
             for (int i = 0; i <= number; i++)
             {
-
-                // Draw triangles Circle 1
-                Triangle triangle1 = new Triangle(new Point3D(0, 0, z1), new Point3D(majRadius, -a1, z1), new Point3D(majRadius, a1, z1), Color.Green);
-                // Draw triangles Circle 2
-                Triangle triangle2 = new Triangle(new Point3D(radius, 0, z2), new Point3D(majRadius, -a1, z1), new Point3D(majRadius, a1, z1), Color.Green);
+                // Draw minor circle
+                Triangle triangle1 = new Triangle(new Point3D(0, 0, z1), new Point3D(x1, y1, z1), new Point3D(x1, -y1, z1), Color.Pink);
                 // Draw triangles for the circle1
-                Triangle triangle3 = new Triangle(new Point3D(0, 0, z2), new Point3D(radius, a, z2), new Point3D(radius, -a, z2), Color.Green);
+                Triangle triangle2 = new Triangle(new Point3D(x2, 0, z2), new Point3D(x1, y1, z1), new Point3D(x1, -y1, z1), Color.Pink);
+                // Draw greater Circle 2
+                Triangle triangle3 = new Triangle(new Point3D(0, 0, z2), new Point3D(x2, -y2, z2), new Point3D(x2, y2, z2), Color.Pink);
                 // Draw triangles for the circle2
-                Triangle triangle4 = new Triangle(new Point3D(radius, 0, z1), new Point3D(radius, a, z2), new Point3D(radius, -a, z2), Color.Green);
+                Triangle triangle4 = new Triangle(new Point3D(x1, 0, z1), new Point3D(x2, y2, z2), new Point3D(x2, -y2, z2), Color.Pink);
                 // rotate the triangles for the first cirlce
-                triangle1.rotateZ(noSeComoLlamarEstaVariable * i);
-                triangle2.rotateZ(noSeComoLlamarEstaVariable * i);
+                triangle1.rotateZ(angle * i);
+                triangle2.rotateZ(angle * i);
                 // rotate the triangles for the other cirlce 
-                triangle3.rotateZ((noSeComoLlamarEstaVariable * i) + (noSeComoLlamarEstaVariable / 2));
-                triangle4.rotateZ((noSeComoLlamarEstaVariable * i) + (noSeComoLlamarEstaVariable / 2));
+                triangle3.rotateZ((angle * (i + .5f)));
+                triangle4.rotateZ((angle * (i + .5f)));
                 //add it to the scene
                 triangles.Add(triangle1);
                 triangles.Add(triangle2);
